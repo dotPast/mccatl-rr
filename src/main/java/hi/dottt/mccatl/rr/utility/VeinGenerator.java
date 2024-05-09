@@ -13,13 +13,13 @@ import org.bukkit.scoreboard.Scoreboard;
 import java.util.Random;
 
 /**
- * Utility class for generating gold ore veins
+ * Utility class for generating and resetting gold ore veins
  */
 public class VeinGenerator {
     /**
      * Attempt to generate a vein at specified coordinates.
      *
-     * @return Location where vein was spawned
+     * @return Location where the vein was spawned
      */
     public Location generate_vein() {
         // Get a random valid vein block
@@ -75,5 +75,36 @@ public class VeinGenerator {
         }
 
         return blockPos;
+    }
+
+    public void reset_veins() {
+        Scoreboard scoreboard = Bukkit.getScoreboardManager().getMainScoreboard();
+
+        Objective objective;
+        try {
+            objective = scoreboard.registerNewObjective("goldminepos", Criteria.DUMMY, Component.empty());
+        } catch (IllegalArgumentException exception) {
+            objective = scoreboard.getObjective("goldminepos");
+        }
+
+        int x1 = objective.getScore("x1").getScore();
+        int y1 = objective.getScore("y1").getScore();
+        int z1 = objective.getScore("z1").getScore();
+
+        int x2 = objective.getScore("x2").getScore();
+        int y2 = objective.getScore("y2").getScore();
+        int z2 = objective.getScore("z2").getScore();
+
+        for (int cubeX = x1; cubeX < x2; cubeX++) {
+            for (int cubeY = y1; cubeY < y2; cubeY++) {
+                for (int cubeZ = z1; cubeZ < z2; cubeZ++) {
+                    Block block = Bukkit.getWorld("world").getBlockAt(cubeX, cubeY, cubeZ);
+
+                    if (block.getType() == Material.GOLD_ORE) {
+                        block.setType(Material.STONE);
+                    }
+                }
+            }
+        }
     }
 }

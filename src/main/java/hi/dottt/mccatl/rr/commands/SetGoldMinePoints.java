@@ -1,6 +1,7 @@
 package hi.dottt.mccatl.rr.commands;
 
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
@@ -45,6 +46,9 @@ public class SetGoldMinePoints implements CommandExecutor {
             sender.sendMessage("No arguments or argument is not 1 or 2.");
             return false;
         }
+
+        Component success_msg = Component.text(String.format("[✔] Successfully set point %s to %s %s %s.", args[0], playerlocation.getBlockX(), playerlocation.getBlockY(), playerlocation.getBlockZ())).color(TextColor.color(0x74ff59));
+        sender.sendMessage(success_msg);
 
         return true;
     }

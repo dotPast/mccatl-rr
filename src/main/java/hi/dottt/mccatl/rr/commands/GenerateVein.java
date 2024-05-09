@@ -1,6 +1,8 @@
 package hi.dottt.mccatl.rr.commands;
 
 import hi.dottt.mccatl.rr.utility.VeinGenerator;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -20,11 +22,12 @@ public class GenerateVein implements CommandExecutor {
                 sender.sendMessage("Invalid number defaulting to 1 vein.");
             }
         }
-        Location generatedAt;
         for (int i = 0; i < amount; i++) {
-            generatedAt = gen.generate_vein();
-            sender.sendMessage(String.format("Vein generated at %s %s %s", generatedAt.getBlockX(), generatedAt.getBlockY(), generatedAt.getBlockZ()));
+            gen.generate_vein();
         }
+
+        Component success_msg = Component.text(String.format("[✔] Successfully generated %s veins.", amount)).color(TextColor.color(0x74ff59));
+        sender.sendMessage(success_msg);
 
         return true;
     }

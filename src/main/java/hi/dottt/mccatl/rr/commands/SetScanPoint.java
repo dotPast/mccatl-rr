@@ -1,6 +1,7 @@
 package hi.dottt.mccatl.rr.commands;
 
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
@@ -36,6 +37,9 @@ public class SetScanPoint implements CommandExecutor {
         objective.getScore("x").setScore(playerlocation.getBlockX());
         objective.getScore("y").setScore(playerlocation.getBlockY());
         objective.getScore("z").setScore(playerlocation.getBlockZ());
+
+        Component success_msg = Component.text(String.format("[✔] Successfully set scan point to %s %s %s.", playerlocation.getBlockX(), playerlocation.getBlockY(), playerlocation.getBlockZ())).color(TextColor.color(0x74ff59));
+        sender.sendMessage(success_msg);
 
         return true;
     }
