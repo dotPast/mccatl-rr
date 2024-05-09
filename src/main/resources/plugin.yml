@@ -1,0 +1,22 @@
+name: MCCATL-RR
+version: '${version}'
+main: hi.dottt.mccatl.rr.RR
+api-version: '1.20'
+authors: [ dotPast ]
+description: Recreation of Railroad Rush from MCC 4KO. Part of MCC@L.
+commands:
+  check-rails:
+    description: Check rails in 10x10x10 cube
+    usage: /check-rails <x> <y> <z>
+  spawntnt:
+    usage: /spawntnt
+    description: Spawn TNT at rails starting point
+  setstartrail:
+    usage: /setstartrail
+    description: Set rails starting point at current block
+  setscanpoint:
+    usage: /setscanpoint
+    description: Set scan point at current location
+  setgoldminepoint:
+    usage: /setgoldminepoint <1 or 2>
+    description: Set gold mine point at current location
