@@ -1,10 +1,10 @@
-package hi.dottt.mccatl.rr;
+package hi.dottt.mccatl.rr.utility;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.World;
 
-public class Utility {
+public class Rails {
     public int[] countRails(int x1, int x2, int y1, int y2, int z1, int z2) {
         int[] result = {0, 0};
 

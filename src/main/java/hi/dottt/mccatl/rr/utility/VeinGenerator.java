@@ -1,4 +1,4 @@
-package hi.dottt.mccatl.rr.generation;
+package hi.dottt.mccatl.rr.utility;
 
 
 import net.kyori.adventure.text.Component;
@@ -15,11 +15,16 @@ import java.util.Random;
 /**
  * Utility class for generating gold ore veins
  */
-public class GoldOreGen {
+public class VeinGenerator {
     /**
      * Attempt to generate a vein at specified coordinates.
+     *
+     * @return Location where vein was spawned
      */
-    public void generate_vein(Location loc) {
+    public Location generate_vein() {
+        // Get a random valid vein block
+        Location loc = get_random_block();
+
         // Create a 3x3 cube
         int x1 = loc.blockX() - 1;
         int x2 = loc.blockX() + 1;
@@ -39,13 +44,15 @@ public class GoldOreGen {
                 }
             }
         }
+
+        return loc;
     }
 
     public Location get_random_block() {
         Location blockPos = new Location(Bukkit.getWorld("world"), 0, 0, 0);
 
         Scoreboard scoreboard = Bukkit.getScoreboardManager().getMainScoreboard();
-        Random rng = new Random();
+        Random rng;
 
         Objective objective;
         try {
@@ -62,7 +69,7 @@ public class GoldOreGen {
         int y2 = objective.getScore("y2").getScore();
         int z2 = objective.getScore("z2").getScore();
 
-        while (blockPos.getBlock().getType() != Material.STONE || blockPos.getBlock().getType() != Material.ANDESITE) {
+        while (blockPos.getBlock().getType() != Material.STONE) {
             rng = new Random();
             blockPos = new Location(Bukkit.getWorld("world"), rng.nextInt(x2-x1) + x1, rng.nextInt(y2-y1) + y1, rng.nextInt(z2-z1) + z1);
         }

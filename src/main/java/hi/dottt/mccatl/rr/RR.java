@@ -12,11 +12,13 @@ public final class RR extends JavaPlugin {
     @Override
     public void onEnable() {
         this.getLogger().info("Registering command executors...");
-        Bukkit.getPluginCommand("check-rails").setExecutor(new CheckRails());
+        Bukkit.getPluginCommand("checkrails").setExecutor(new CheckRails());
         Bukkit.getPluginCommand("spawntnt").setExecutor(new SpawnTNT());
         Bukkit.getPluginCommand("setstartrail").setExecutor(new SetStartRail());
         Bukkit.getPluginCommand("setscanpoint").setExecutor(new SetScanPoint());
         Bukkit.getPluginCommand("setgoldminepoint").setExecutor(new SetGoldMinePoints());
+        Bukkit.getPluginCommand("generatevein").setExecutor(new GenerateVein());
+        Bukkit.getPluginCommand("resetveins").setExecutor(new ResetVeins());
 
         this.getLogger().info("Registering events...");
         getServer().getPluginManager().registerEvents(new TriggerExplosion(), this);

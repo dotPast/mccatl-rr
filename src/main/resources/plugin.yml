@@ -5,9 +5,9 @@ api-version: '1.20'
 authors: [ dotPast ]
 description: Recreation of Railroad Rush from MCC 4KO. Part of MCC@L.
 commands:
-  check-rails:
-    description: Check rails in 10x10x10 cube
-    usage: /check-rails <x> <y> <z>
+  checkrails:
+    description: Check rails in scan zone
+    usage: /checkrails
   spawntnt:
     usage: /spawntnt
     description: Spawn TNT at rails starting point
@@ -20,3 +20,9 @@ commands:
   setgoldminepoint:
     usage: /setgoldminepoint <1 or 2>
     description: Set gold mine point at current location
+  generatevein:
+    usage: /generatevein
+    description: Generate a gold ore vein are random location
+  resetveins:
+    usage: /resetveins
+    description: Reset all Gold Ore veins back to stone

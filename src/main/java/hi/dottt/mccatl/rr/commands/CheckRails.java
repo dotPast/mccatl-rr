@@ -1,6 +1,6 @@
 package hi.dottt.mccatl.rr.commands;
 
-import hi.dottt.mccatl.rr.Utility;
+import hi.dottt.mccatl.rr.utility.Rails;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.Bukkit;
@@ -15,7 +15,7 @@ import org.jetbrains.annotations.NotNull;
 public class CheckRails implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
-        Utility utility = new Utility();
+        Rails utility = new Rails();
         Scoreboard scoreboard = Bukkit.getScoreboardManager().getMainScoreboard();
 
         Objective objective;
