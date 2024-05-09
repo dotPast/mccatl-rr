@@ -10,6 +10,8 @@ import org.bukkit.scoreboard.Criteria;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
 
+import java.util.Random;
+
 /**
  * Utility class for generating gold ore veins
  */
@@ -43,6 +45,7 @@ public class GoldOreGen {
         Location blockPos = new Location(Bukkit.getWorld("world"), 0, 0, 0);
 
         Scoreboard scoreboard = Bukkit.getScoreboardManager().getMainScoreboard();
+        Random rng = new Random();
 
         Objective objective;
         try {
@@ -51,8 +54,17 @@ public class GoldOreGen {
             objective = scoreboard.getObjective("goldminepos");
         }
 
+        int x1 = objective.getScore("x1").getScore();
+        int y1 = objective.getScore("y1").getScore();
+        int z1 = objective.getScore("z1").getScore();
+
+        int x2 = objective.getScore("x2").getScore();
+        int y2 = objective.getScore("y2").getScore();
+        int z2 = objective.getScore("z2").getScore();
+
         while (blockPos.getBlock().getType() != Material.STONE || blockPos.getBlock().getType() != Material.ANDESITE) {
-            blockPos = new Location(Bukkit.getWorld("world"), 0, 0, 0);
+            rng = new Random();
+            blockPos = new Location(Bukkit.getWorld("world"), rng.nextInt(x2-x1) + x1, rng.nextInt(y2-y1) + y1, rng.nextInt(z2-z1) + z1);
         }
 
         return blockPos;
