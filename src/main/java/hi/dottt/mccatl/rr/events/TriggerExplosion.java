@@ -92,6 +92,9 @@ public class TriggerExplosion implements Listener {
                         if (world.getBlockAt(x, y, z).getBlockData().getMaterial() == Material.STONE_BRICKS) {
                             world.getBlockAt(x, y, z).setType(Material.CRACKED_STONE_BRICKS);
                         }
+                        if (world.getBlockAt(x, y, z).getBlockData().getMaterial() == Material.WHITE_CONCRETE) {
+                            world.getBlockAt(x, y, z).setType(Material.AIR);
+                        }
                         if (world.getBlockAt(x, y, z).getBlockData().getMaterial() == Material.OXIDIZED_COPPER && entity.getType() == EntityType.MINECART_TNT) {
                             world.getBlockAt(x, y, z).setType(Material.AIR);
                             reachedCheckpoint = true;
