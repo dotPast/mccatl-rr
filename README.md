@@ -10,6 +10,6 @@ Recreation of Railroad Rush from MCC 4KO. Part of upcoming MCC@L project.
 - Scan zone always goes in south (positive Z) direction.
 
 ## Setup
-1. Add the plugin to the server. A separate Paper/Purpur server is recommended.
+1. Download the plugin from [releases](https://github.com/dotPast/mccatl-rr/releases) or [GitHub Actions](https://github.com/dotPast/mccatl-rr/actions/workflows/gradle.yml). A separate Paper/Purpur server is recommended.
 2. Import a map into the server.
 3. Specify points for locations using commands (See wiki for more information)
