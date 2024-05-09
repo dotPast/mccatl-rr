@@ -24,7 +24,10 @@ public class Rails {
             for (int y = y1; y < y2; y++) {
                 for (int x = x1; x < x2; x++) {
                     World world = Bukkit.getWorld("world");
-                    if (world.getBlockAt(x, y, z).getBlockData().getMaterial() == Material.RAIL || world.getBlockAt(x, y, z).getBlockData().getMaterial() == Material.POWERED_RAIL) {
+                    if (world.getBlockAt(x, y, z).getType() == Material.RAIL || world.getBlockAt(x, y, z).getType() == Material.POWERED_RAIL) {
+                        Bukkit.getPluginManager().getPlugin("MCCATL-RR").getLogger().info(String.format("Rail at %s %s %s", x, y, z));
+                        Bukkit.getPluginManager().getPlugin("MCCATL-RR").getLogger().info(String.valueOf(foundRail));
+                        Bukkit.getPluginManager().getPlugin("MCCATL-RR").getLogger().info(String.valueOf(countRails));
                         result[0]++;
                         if (!foundRail && countRails) {
                             result[1]++;
@@ -32,9 +35,9 @@ public class Rails {
                         foundRail = true;
                     }
                 }
-                if (!foundRail) {
-                    countRails = false;
-                }
+            }
+            if (!foundRail) {
+                countRails = false;
             }
         }
 
