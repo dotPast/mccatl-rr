@@ -29,7 +29,7 @@ public class CheckRails implements CommandExecutor {
         int y1 = objective.getScore("y").getScore();
         int z1 = objective.getScore("z").getScore();
 
-        int x2 = x1 + 11;
+        int x2 = x1 + 23;
         int y2 = y1 + 20;
         int z2 = z1 + 512;
 
@@ -49,7 +49,9 @@ public class CheckRails implements CommandExecutor {
                 .append(Component.text().content("Total rails placed: ").color(TextColor.color(0x26dbff)))
                 .append(Component.text().content(String.format("%s. ", rails[0])).color(TextColor.color(0x26dbff)))
                 .append(Component.text().content("Length of the track: ").color(TextColor.color(0x26dbff)))
-                .append(Component.text().content(String.format("%s.", rails[1])).color(TextColor.color(0x26dbff)))
+                .append(Component.text().content(String.format("%s. ", rails[1])).color(TextColor.color(0x26dbff)))
+                .append(Component.text().content("Checkpoints reached: ").color(TextColor.color(0x26dbff)))
+                .append(Component.text().content(String.format("%s.", rails[2])).color(TextColor.color(0x26dbff)))
                 .build();
 
         Bukkit.broadcast(results);
