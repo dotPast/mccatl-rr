@@ -19,6 +19,7 @@ public final class RR extends JavaPlugin {
         Bukkit.getPluginCommand("setgoldminepoint").setExecutor(new SetGoldMinePoints());
         Bukkit.getPluginCommand("generatevein").setExecutor(new GenerateVein());
         Bukkit.getPluginCommand("resetveins").setExecutor(new ResetVeins());
+        Bukkit.getPluginCommand("resetcheckpoints").setExecutor(new ResetCheckpoints());
 
         this.getLogger().info("Registering events...");
         getServer().getPluginManager().registerEvents(new TriggerExplosion(), this);

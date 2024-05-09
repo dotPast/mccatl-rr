@@ -9,6 +9,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.scoreboard.Criteria;
 import org.bukkit.scoreboard.Objective;
+import org.bukkit.scoreboard.Score;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.util.Vector;
 
@@ -69,5 +70,19 @@ public class Rails {
         Entity minecart = world.spawnEntity(location, EntityType.MINECART_TNT);
 
         minecart.setVelocity(new Vector(10, 10, 10));
+    }
+
+    public void resetCheckpoints() {
+        Scoreboard scoreboard = Bukkit.getScoreboardManager().getMainScoreboard();
+        Objective checkpointObjective;
+
+        try {
+            checkpointObjective = scoreboard.registerNewObjective("checkpoints", Criteria.DUMMY, Component.empty());
+        } catch (IllegalArgumentException exception) {
+            checkpointObjective = scoreboard.getObjective("checkpoints");
+        }
+
+        Score score = checkpointObjective.getScore("num");
+        score.setScore(0);
     }
 }

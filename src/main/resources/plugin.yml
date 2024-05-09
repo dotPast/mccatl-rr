@@ -26,3 +26,6 @@ commands:
   resetveins:
     usage: /resetveins
     description: Reset all Gold Ore veins back to stone
+  resetcheckpoints:
+    usage: /resetcheckpoints
+    description: Reset checkpoints to 0
