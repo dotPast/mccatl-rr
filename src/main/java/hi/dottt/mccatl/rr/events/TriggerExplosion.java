@@ -6,6 +6,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
+import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
@@ -24,16 +25,6 @@ public class TriggerExplosion implements Listener {
     public void onCollision(VehicleBlockCollisionEvent event) {
         if (event.getVehicle().getType() == EntityType.MINECART_TNT) {
             Bukkit.getPluginManager().callEvent(new ExplosionPrimeEvent(event.getVehicle(), 0, false));
-        }
-    }
-
-    @EventHandler
-    public void onNotOnRails(VehicleMoveEvent event) {
-        if (event.getVehicle().getType() == EntityType.MINECART_TNT) {
-            Location location = event.getVehicle().getLocation();
-            if (location.getBlock().getType() != Material.RAIL & location.getBlock().getType() != Material.POWERED_RAIL) {
-                Bukkit.getPluginManager().callEvent(new ExplosionPrimeEvent(event.getVehicle(), 0, false));
-            }
         }
     }
 
@@ -75,7 +66,6 @@ public class TriggerExplosion implements Listener {
                 );
             }
 
-
             int x1 = explosionLocation.getBlockX() - 3;
             int y1 = explosionLocation.getBlockY() - 3;
             int z1 = explosionLocation.getBlockZ() - 3;
@@ -100,7 +90,6 @@ public class TriggerExplosion implements Listener {
             }
 
             world.createExplosion(explosionLocation, 0);
-
             entity.remove();
         }
     }
