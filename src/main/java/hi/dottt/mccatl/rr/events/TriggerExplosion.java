@@ -16,6 +16,7 @@ import org.bukkit.event.vehicle.VehicleBlockCollisionEvent;
 import org.bukkit.event.vehicle.VehicleMoveEvent;
 import org.bukkit.scoreboard.Criteria;
 import org.bukkit.scoreboard.Objective;
+import org.bukkit.scoreboard.Score;
 import org.bukkit.scoreboard.Scoreboard;
 
 import java.text.DecimalFormat;
@@ -66,6 +67,15 @@ public class TriggerExplosion implements Listener {
                 );
             }
 
+            Objective checkpointObjective;
+            try {
+                checkpointObjective = scoreboard.registerNewObjective("checkpoints", Criteria.DUMMY, Component.empty());
+            } catch (IllegalArgumentException exception) {
+                checkpointObjective = scoreboard.getObjective("checkpoints");
+            }
+
+            boolean reachedCheckpoint = false;
+
             int x1 = explosionLocation.getBlockX() - 3;
             int y1 = explosionLocation.getBlockY() - 3;
             int z1 = explosionLocation.getBlockZ() - 3;
@@ -84,9 +94,22 @@ public class TriggerExplosion implements Listener {
                         }
                         if (world.getBlockAt(x, y, z).getBlockData().getMaterial() == Material.OXIDIZED_COPPER && entity.getType() == EntityType.MINECART_TNT) {
                             world.getBlockAt(x, y, z).setType(Material.AIR);
+                            reachedCheckpoint = true;
                         }
                     }
                 }
+            }
+
+            if (reachedCheckpoint) {
+                Score score = checkpointObjective.getScore("num");
+                score.setScore(score.getScore() + 1);
+
+                Component checkpointMsg = Component.text().content("[").color(TextColor.color(0x242424))
+                        .append(Component.text("GAME").color(TextColor.color(0x26dbff)))
+                        .append(Component.text().content("] ").color(TextColor.color(0x242424)))
+                        .append(Component.text(String.format("Reached checkpoint %s.", score.getScore())).color(TextColor.color(0x26dbff))).build();
+
+                Bukkit.broadcast(checkpointMsg);
             }
 
             world.createExplosion(explosionLocation, 0);

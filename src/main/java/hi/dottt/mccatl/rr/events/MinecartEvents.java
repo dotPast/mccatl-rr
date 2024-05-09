@@ -16,6 +16,7 @@ import org.bukkit.event.vehicle.VehicleMoveEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scoreboard.Criteria;
 import org.bukkit.scoreboard.Objective;
+import org.bukkit.scoreboard.Score;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.util.Vector;
 
@@ -27,21 +28,21 @@ public class MinecartEvents implements Listener {
 
         Scoreboard scoreboard = Bukkit.getScoreboardManager().getMainScoreboard();
 
-        Objective objective;
+        Objective timerObjective;
         try {
-            objective = scoreboard.registerNewObjective("minecarttimer", Criteria.DUMMY, Component.empty());
+            timerObjective = scoreboard.registerNewObjective("minecarttimer", Criteria.DUMMY, Component.empty());
         } catch (IllegalArgumentException exception) {
-            objective = scoreboard.getObjective("minecarttimer");
+            timerObjective = scoreboard.getObjective("minecarttimer");
         }
 
         if (entity.getType() == EntityType.MINECART_TNT) {
-            int timer = objective.getScore("timer").getScore();
+            int timer = timerObjective.getScore("timer").getScore();
             timer--;
             if (railBlock.getType() == Material.POWERED_RAIL) {
-                objective.getScore("timer").setScore(150);
+                timerObjective.getScore("timer").setScore(150);
                 entity.setVelocity(entity.getVelocity().add(new Vector(1, 1, 1))); // Prevent the minecart from slowing down on powered rails
             } else {
-                objective.getScore("timer").setScore(timer);
+                timerObjective.getScore("timer").setScore(timer);
             }
 
             if (timer == 0) {

@@ -14,7 +14,7 @@ import org.bukkit.util.Vector;
 
 public class Rails {
     public int[] countRails(int x1, int x2, int y1, int y2, int z1, int z2) {
-        int[] result = {0, 0};
+        int[] result = {0, 0, 0};
 
         boolean foundRail;
         boolean countRails = true;
@@ -36,6 +36,16 @@ public class Rails {
                 }
             }
         }
+
+        Scoreboard scoreboard = Bukkit.getScoreboardManager().getMainScoreboard();
+        Objective checkpointObjective;
+        try {
+            checkpointObjective = scoreboard.registerNewObjective("checkpoints", Criteria.DUMMY, Component.empty());
+        } catch (IllegalArgumentException exception) {
+            checkpointObjective = scoreboard.getObjective("checkpoints");
+        }
+
+        result[2] = checkpointObjective.getScore("num").getScore();
 
         return result;
     }
