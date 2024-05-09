@@ -14,6 +14,7 @@ import org.bukkit.event.entity.ExplosionPrimeEvent;
 import org.bukkit.event.vehicle.VehicleCreateEvent;
 import org.bukkit.event.vehicle.VehicleMoveEvent;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.scoreboard.Criteria;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Score;
@@ -47,6 +48,13 @@ public class MinecartEvents implements Listener {
 
             if (timer == 0) {
                 Bukkit.getPluginManager().callEvent(new ExplosionPrimeEvent(entity, 0, false));
+
+            }
+
+            if (entity.getLocation().getBlock().getType() != Material.RAIL && entity.getLocation().getBlock().getType() != Material.POWERED_RAIL) {
+                if (entity.getLocation().getBlock().getRelative(BlockFace.DOWN).getType() != Material.AIR && entity.getLocation().getBlock().getRelative(BlockFace.DOWN).getType() != Material.POWERED_RAIL && entity.getLocation().getBlock().getRelative(BlockFace.DOWN).getType() != Material.RAIL) {
+                    Bukkit.getPluginManager().callEvent(new ExplosionPrimeEvent(event.getVehicle(), 0, false));
+                }
             }
         }
     }
@@ -69,17 +77,5 @@ public class MinecartEvents implements Listener {
 
             objective.getScore("timer").setScore(150);
         }
-
-        new BukkitRunnable() {
-            @Override
-            public void run() {
-                if (entity.getLocation().getBlock().getType() != Material.RAIL && entity.getLocation().getBlock().getType() != Material.POWERED_RAIL) {
-                    if (entity.getLocation().getBlock().getRelative(BlockFace.DOWN).getType() != Material.AIR && entity.getLocation().getBlock().getRelative(BlockFace.DOWN).getType() != Material.POWERED_RAIL && entity.getLocation().getBlock().getRelative(BlockFace.DOWN).getType() != Material.RAIL) {
-                        Bukkit.getPluginManager().callEvent(new ExplosionPrimeEvent(event.getVehicle(), 0, false));
-                        this.cancel();
-                    }
-                }
-            }
-        }.runTaskTimer(Bukkit.getPluginManager().getPlugin("MCCATL-RR"), 0, 1);
     }
 }
