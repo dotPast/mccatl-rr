@@ -17,7 +17,7 @@ public class WeakBlocks implements Listener {
             @Override
             public void run() {
                 if (block.getType() == Material.GRANITE) {
-                    block.setType(Material.AIR);
+                    block.breakNaturally();
                 }
             }
         }.runTaskLater(Bukkit.getPluginManager().getPlugin("MCCATL-RR"), 100);
