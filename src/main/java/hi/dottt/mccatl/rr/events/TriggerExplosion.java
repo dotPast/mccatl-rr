@@ -6,14 +6,15 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
-import org.bukkit.block.BlockFace;
+import org.bukkit.damage.DamageSource;
+import org.bukkit.damage.DamageType;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.ExplosionPrimeEvent;
 import org.bukkit.event.vehicle.VehicleBlockCollisionEvent;
-import org.bukkit.event.vehicle.VehicleMoveEvent;
 import org.bukkit.scoreboard.Criteria;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Score;
@@ -65,6 +66,10 @@ public class TriggerExplosion implements Listener {
                                 ).color(TextColor.color(0x26dbff)))
                                 .append(Component.text(" blocks away from spawn.").color(TextColor.color(0x26dbff))).build()
                 );
+            }
+
+            for (Player player : explosionLocation.getNearbyEntitiesByType(Player.class, 5)) {
+                player.damage(6, DamageSource.builder(DamageType.EXPLOSION).build());
             }
 
             Objective checkpointObjective;
