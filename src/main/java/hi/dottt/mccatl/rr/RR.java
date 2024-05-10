@@ -1,10 +1,7 @@
 package hi.dottt.mccatl.rr;
 
 import hi.dottt.mccatl.rr.commands.*;
-import hi.dottt.mccatl.rr.events.DynamiteStick;
-import hi.dottt.mccatl.rr.events.MinecartEvents;
-import hi.dottt.mccatl.rr.events.TriggerExplosion;
-import hi.dottt.mccatl.rr.events.WeakBlocks;
+import hi.dottt.mccatl.rr.events.*;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -27,6 +24,7 @@ public final class RR extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new MinecartEvents(), this);
         getServer().getPluginManager().registerEvents(new DynamiteStick(), this);
         getServer().getPluginManager().registerEvents(new WeakBlocks(), this);
+        getServer().getPluginManager().registerEvents(new DeathMsg(), this);
     }
 
     @Override
