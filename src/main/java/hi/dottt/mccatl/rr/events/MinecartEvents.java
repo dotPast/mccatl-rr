@@ -1,6 +1,7 @@
 package hi.dottt.mccatl.rr.events;
 
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -13,11 +14,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.ExplosionPrimeEvent;
 import org.bukkit.event.vehicle.VehicleCreateEvent;
 import org.bukkit.event.vehicle.VehicleMoveEvent;
-import org.bukkit.scheduler.BukkitRunnable;
-import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.scoreboard.Criteria;
 import org.bukkit.scoreboard.Objective;
-import org.bukkit.scoreboard.Score;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.util.Vector;
 
@@ -38,6 +36,134 @@ public class MinecartEvents implements Listener {
 
         if (entity.getType() == EntityType.MINECART_TNT) {
             int timer = timerObjective.getScore("timer").getScore();
+
+            if (timer == 150) {
+                entity.customName(
+                        Component.text("|||||||||||||||||||||||||").color(TextColor.color(0x40ff40))
+                );
+            } else if (timer == 144) {
+                entity.customName(
+                        Component.text("||||||||||||||||||||||||").color(TextColor.color(0x40ff40))
+                                .append(Component.text("|").color(TextColor.color(0x666666)))
+                );
+            } else if (timer == 138) {
+                entity.customName(
+                        Component.text("|||||||||||||||||||||||").color(TextColor.color(0x40ff40))
+                                .append(Component.text("||").color(TextColor.color(0x666666)))
+                );
+            } else if (timer == 132) {
+                entity.customName(
+                        Component.text("||||||||||||||||||||||").color(TextColor.color(0x40ff40))
+                                .append(Component.text("|||").color(TextColor.color(0x666666)))
+                );
+            } else if (timer == 126) {
+                entity.customName(
+                        Component.text("|||||||||||||||||||||").color(TextColor.color(0x40ff40))
+                                .append(Component.text("||||").color(TextColor.color(0x666666)))
+                );
+            } else if (timer == 120) {
+                entity.customName(
+                        Component.text("||||||||||||||||||||").color(TextColor.color(0x40ff40))
+                                .append(Component.text("|||||").color(TextColor.color(0x666666)))
+                );
+            } else if (timer == 114) {
+                entity.customName(
+                        Component.text("|||||||||||||||||||").color(TextColor.color(0x40ff40))
+                                .append(Component.text("||||||").color(TextColor.color(0x666666)))
+                );
+            } else if (timer == 108) {
+                entity.customName(
+                        Component.text("||||||||||||||||||").color(TextColor.color(0x40ff40))
+                                .append(Component.text("|||||||").color(TextColor.color(0x666666)))
+                );
+            } else if (timer == 102) {
+                entity.customName(
+                        Component.text("|||||||||||||||||").color(TextColor.color(0x40ff40))
+                                .append(Component.text("||||||||").color(TextColor.color(0x666666)))
+                );
+            } else if (timer == 96) {
+                entity.customName(
+                        Component.text("||||||||||||||||").color(TextColor.color(0x40ff40))
+                                .append(Component.text("|||||||||").color(TextColor.color(0x666666)))
+                );
+            } else if (timer == 90) {
+                entity.customName(
+                        Component.text("|||||||||||||||").color(TextColor.color(0x40ff40))
+                                .append(Component.text("||||||||||").color(TextColor.color(0x666666)))
+                );
+            } else if (timer == 84) {
+                entity.customName(
+                        Component.text("||||||||||||||").color(TextColor.color(0x40ff40))
+                                .append(Component.text("|||||||||||").color(TextColor.color(0x666666)))
+                );
+            } else if (timer == 78) {
+                entity.customName(
+                        Component.text("|||||||||||||").color(TextColor.color(0x40ff40))
+                                .append(Component.text("||||||||||||").color(TextColor.color(0x666666)))
+                );
+            } else if (timer == 72) {
+                entity.customName(
+                        Component.text("||||||||||||").color(TextColor.color(0xffd500))
+                                .append(Component.text("|||||||||||||").color(TextColor.color(0x666666)))
+                );
+            } else if (timer == 66) {
+                entity.customName(
+                        Component.text("|||||||||||").color(TextColor.color(0xffd500))
+                                .append(Component.text("||||||||||||||").color(TextColor.color(0x666666)))
+                );
+            } else if (timer == 60) {
+                entity.customName(
+                        Component.text("||||||||||").color(TextColor.color(0xffd500))
+                                .append(Component.text("|||||||||||||||").color(TextColor.color(0x666666)))
+                );
+            } else if (timer == 54) {
+                entity.customName(
+                        Component.text("|||||||||").color(TextColor.color(0xffd500))
+                                .append(Component.text("||||||||||||||||").color(TextColor.color(0x666666)))
+                );
+            } else if (timer == 48) {
+                entity.customName(
+                        Component.text("||||||||").color(TextColor.color(0xffd500))
+                                .append(Component.text("|||||||||||||||||").color(TextColor.color(0x666666)))
+                );
+            } else if (timer == 42) {
+                entity.customName(
+                        Component.text("|||||||").color(TextColor.color(0xffd500))
+                                .append(Component.text("||||||||||||||||||").color(TextColor.color(0x666666)))
+                );
+            } else if (timer == 36) {
+                entity.customName(
+                        Component.text("||||||").color(TextColor.color(0xffd500))
+                                .append(Component.text("|||||||||||||||||||").color(TextColor.color(0x666666)))
+                );
+            } else if (timer == 30) {
+                entity.customName(
+                        Component.text("|||||").color(TextColor.color(0xffd500))
+                                .append(Component.text("||||||||||||||||||||").color(TextColor.color(0x666666)))
+                );
+            } else if (timer == 24) {
+                entity.customName(
+                        Component.text("||||").color(TextColor.color(0xffd500))
+                                .append(Component.text("|||||||||||||||||||||").color(TextColor.color(0x666666)))
+                );
+            } else if (timer == 18) {
+                entity.customName(
+                        Component.text("|||").color(TextColor.color(0xffd500))
+                                .append(Component.text("||||||||||||||||||||||").color(TextColor.color(0x666666)))
+                );
+            } else if (timer == 12) {
+                entity.customName(
+                        Component.text("||").color(TextColor.color(0xffd500))
+                                .append(Component.text("|||||||||||||||||||||||").color(TextColor.color(0x666666)))
+                );
+            } else if (timer == 6) {
+                entity.customName(
+                        Component.text("|").color(TextColor.color(0xffd500))
+                                .append(Component.text("||||||||||||||||||||||||").color(TextColor.color(0x666666)))
+                );
+            }
+
+
             timer--;
             if (railBlock.getType() == Material.POWERED_RAIL) {
                 timerObjective.getScore("timer").setScore(150);
@@ -76,6 +202,11 @@ public class MinecartEvents implements Listener {
             }
 
             objective.getScore("timer").setScore(150);
+
+            entity.setCustomNameVisible(true);
+            entity.customName(
+                    Component.text("|||||||||||||||||||||||||").color(TextColor.color(0x40ff40))
+            );
         }
     }
 }
