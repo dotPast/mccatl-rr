@@ -86,18 +86,24 @@ public class TriggerExplosion implements Listener {
             for (int x = x1; x < x2; x++) {
                 for (int y = y1; y < y2; y++) {
                     for (int z = z1; z < z2; z++) {
-                        if (world.getBlockAt(x, y, z).getBlockData().getMaterial() == Material.CRACKED_STONE_BRICKS) {
+                        if (world.getBlockAt(x, y, z).getType() == Material.CRACKED_STONE_BRICKS) {
                             world.getBlockAt(x, y, z).setType(Material.COBBLESTONE);
                         }
-                        if (world.getBlockAt(x, y, z).getBlockData().getMaterial() == Material.STONE_BRICKS) {
+                        if (world.getBlockAt(x, y, z).getType() == Material.STONE_BRICKS) {
                             world.getBlockAt(x, y, z).setType(Material.CRACKED_STONE_BRICKS);
                         }
-                        if (world.getBlockAt(x, y, z).getBlockData().getMaterial() == Material.WHITE_CONCRETE) {
-                            world.getBlockAt(x, y, z).setType(Material.AIR);
+                        if (world.getBlockAt(x, y, z).getType() == Material.WHITE_CONCRETE) {
+                            world.getBlockAt(x, y, z).breakNaturally();
                         }
-                        if (world.getBlockAt(x, y, z).getBlockData().getMaterial() == Material.OXIDIZED_COPPER && entity.getType() == EntityType.MINECART_TNT) {
+                        if (world.getBlockAt(x, y, z).getType() == Material.OXIDIZED_COPPER && entity.getType() == EntityType.MINECART_TNT) {
                             world.getBlockAt(x, y, z).setType(Material.AIR);
                             reachedCheckpoint = true;
+                        }
+                        if (world.getBlockAt(x, y, z).getType() == Material.RAIL && entity.getType() == EntityType.MINECART) {
+                            world.getBlockAt(x, y, z).breakNaturally();
+                        }
+                        if (world.getBlockAt(x, y, z).getType() == Material.POWERED_RAIL && entity.getType() == EntityType.MINECART) {
+                            world.getBlockAt(x, y, z).breakNaturally();
                         }
                     }
                 }
