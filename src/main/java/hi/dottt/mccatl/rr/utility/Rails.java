@@ -62,9 +62,23 @@ public class Rails {
             objective = scoreboard.getObjective("startrailpos");
         }
 
-        int x = objective.getScore("x").getScore();
-        int y = objective.getScore("y").getScore();
-        int z = objective.getScore("z").getScore();
+        Objective checkpointObjective;
+        try {
+            checkpointObjective = scoreboard.registerNewObjective("checkpoints", Criteria.DUMMY, Component.empty());
+        } catch (IllegalArgumentException exception) {
+            checkpointObjective = scoreboard.getObjective("checkpoints");
+        }
+
+        int x = objective.getScore(String.format("x%s", checkpointObjective.getScore("num").getScore())).getScore();
+        int y = objective.getScore(String.format("y%s", checkpointObjective.getScore("num").getScore())).getScore();
+        int z = objective.getScore(String.format("z%s", checkpointObjective.getScore("num").getScore())).getScore();
+
+        if (x == 0 && y == 0 && z == 0) {
+            Bukkit.getPluginManager().getPlugin("MCCATL-RR").getLogger().warning(String.format("TNT Minecart spawn location for checkpoint %s is X: 0, Y: 0, Z: 0, defaulting to checkpoint 0. Make sure you have set the TNT spawn location for this checkpoint.", checkpointObjective.getScore("num").getScore()));
+            x = objective.getScore("x0").getScore();
+            y = objective.getScore("y0").getScore();
+            z = objective.getScore("z0").getScore();
+        }
         Location location = new Location(world, x, y, z);
 
         Entity minecart = world.spawnEntity(location, EntityType.MINECART_TNT);

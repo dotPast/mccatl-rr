@@ -22,6 +22,11 @@ public class SetStartRail implements CommandExecutor {
             return false;
         }
 
+        if (args.length == 0) {
+            sender.sendMessage("No arguments.");
+            return false;
+        }
+
         Player player = Bukkit.getPlayer(sender.getName());
         Location playerlocation = player.getLocation();
 
@@ -34,11 +39,12 @@ public class SetStartRail implements CommandExecutor {
             objective = scoreboard.getObjective("startrailpos");
         }
 
-        objective.getScore("x").setScore(playerlocation.getBlockX());
-        objective.getScore("y").setScore(playerlocation.getBlockY());
-        objective.getScore("z").setScore(playerlocation.getBlockZ());
+        objective.getScore(String.format("x%s", args[0])).setScore(playerlocation.getBlockX());
+        objective.getScore(String.format("y%s", args[0])).setScore(playerlocation.getBlockY());
+        objective.getScore(String.format("z%s", args[0])).setScore(playerlocation.getBlockZ());
 
-        Component success_msg = Component.text(String.format("[✔] Successfully set starting rails point to %s %s %s.", playerlocation.getBlockX(), playerlocation.getBlockY(), playerlocation.getBlockZ())).color(TextColor.color(0x74ff59));
+
+        Component success_msg = Component.text(String.format("[✔] Successfully set starting rails point for checkpoint %s to %s %s %s.", args[0], playerlocation.getBlockX(), playerlocation.getBlockY(), playerlocation.getBlockZ())).color(TextColor.color(0x74ff59));
         sender.sendMessage(success_msg);
 
         return true;
